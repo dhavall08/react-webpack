@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import App from './App';
 
-const template = React.createElement('p', null, 'Hello from react');
-
-ReactDOM.render(template, document.getElementById('root'));
+const wrapper = document.getElementById('root');
+wrapper ? ReactDOM.render(<App />, wrapper) : false;

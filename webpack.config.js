@@ -1,11 +1,12 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlWebPackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: './src/index.js',
   output: {
     filename: 'bundle.js',
-    publicPath: "/assets/",
+    publicPath: "/assets/", // like a url-prefix
     path: path.resolve(__dirname, 'public')
   },
   module: {
@@ -29,7 +30,36 @@ module.exports = {
           'postcss-loader',
           'sass-loader', // loads a Sass/SCSS file and compiles it to CSS.
         ]
-      }
+      },
+      {
+        test: /\.(svg|png|jpg|jpeg|woff|woff2|ttf|eot|ico)$/,
+        loader: 'url-loader',// see readme for details
+        options: {
+          name: '[name].[ext]?[hash]',
+          limit: 8192, // in bytes
+        },
+      },
     ]
-  }
+  },
+  resolve: {
+    extensions: ['.js', '.jsx', '.css', '.scss'],
+  },
+  plugins: [
+    new HtmlWebPackPlugin({ // Simplifies creation of HTML files automatically
+      template: './public/index.html',
+      filename: './index.html',
+    }),
+    new MiniCssExtractPlugin({
+      filename: "[name]-[chunkhash].css",
+      chunkFilename: "[id].css"
+    }),
+  ],
+  devServer: {
+    contentBase: path.join(__dirname, './public'), // from where to serve files, can be array of multiples
+    // port: 3000,
+    // https: true,
+    // publicPath: '/', // base path for all the assets within your application 
+    historyApiFallback: true, // historyAPIFallback will redirect 404s to /index.html
+    // quiet: true // errors and warnings are not visible
+  },
 }
