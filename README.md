@@ -1,7 +1,7 @@
 ## Webpack Terminologies
 
 ### MiniCssExtractPlugin
-Extract css or JS modules into a separate file.
+Extract CSS or JS modules into a separate file.
 It creates a CSS file per JS file which contains CSS.
 It supports On-Demand-Loading of CSS and SourceMaps.
 
