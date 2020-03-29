@@ -11,6 +11,7 @@ translates CSS into CommonJS
 
 ### postcss-loader
 Modification of css using other package.
+postcss.config.js is used to add configurations.
 
 ### sass-loader
 Loads a Sass/SCSS file and compiles it to CSS.

@@ -1,8 +1,9 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
+const isDev = process.env.NODE_ENV === 'development';
 
-module.exports = {
+const config = {
   entry: './src/index.js',
   output: {
     filename: 'bundle.js',
@@ -23,7 +24,7 @@ module.exports = {
           {
             loader: MiniCssExtractPlugin.loader, // extract css or JS modules into a separate file
             options: {
-              hmr: process.env.NODE_ENV === 'development',
+              hmr: isDev,
             },
           },
           'css-loader', // interprets @import and url() like import/require() and will resolve them, translates CSS into CommonJS
@@ -32,13 +33,22 @@ module.exports = {
         ]
       },
       {
-        test: /\.(svg|png|jpg|jpeg|woff|woff2|ttf|eot|ico)$/,
+        test: /\.(svg|png|jpg|jpeg|ico)$/,
         loader: 'url-loader',// see readme for details
         options: {
           name: '[name].[ext]?[hash]',
           limit: 8192, // in bytes
+          outputPath: './assets/images/',
         },
       },
+      {
+        test: /\.(woff|woff2|ttf|eot)$/,
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]?[hash]',
+          outputPath: './assets/fonts/',
+        },
+      }
     ]
   },
   resolve: {
@@ -48,6 +58,7 @@ module.exports = {
     new HtmlWebPackPlugin({ // Simplifies creation of HTML files automatically
       template: './public/index.html',
       filename: './index.html',
+      hash: true
     }),
     new MiniCssExtractPlugin({
       filename: "[name]-[chunkhash].css",
@@ -62,4 +73,6 @@ module.exports = {
     historyApiFallback: true, // historyAPIFallback will redirect 404s to /index.html
     // quiet: true // errors and warnings are not visible
   },
-}
+};
+
+module.exports = config;
