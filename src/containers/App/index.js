@@ -5,7 +5,7 @@ import('./App.css');
 function App() {
   return (
     <React.StrictMode>
-      <div className="mono">
+      <div className="mono"> 
         <h1>Hi!</h1>
         <h2>A minimum configuration of webpack.</h2>
         <p>A red flower:</p>
@@ -13,6 +13,6 @@ function App() {
       </div>
     </React.StrictMode>
   )
-};
+}
 
 export default App;

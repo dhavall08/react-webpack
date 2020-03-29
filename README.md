@@ -12,6 +12,11 @@ translates CSS into CommonJS
 ### postcss-loader
 Modification of css using other package.
 postcss.config.js is used to add configurations.
+It should be between css-loader and sass-loader.
+
+#### autoprefixer
+Parse CSS and add vendor prefixes to CSS rules.
+Add browserslist in package.json for which we want autoprefixer.
 
 ### sass-loader
 Loads a Sass/SCSS file and compiles it to CSS.

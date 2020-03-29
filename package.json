@@ -4,8 +4,9 @@
   "description": "Webpack demo project",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --open --mode development",
-    "build": "webpack --mode=production"
+    "start": "webpack-dev-server --open",
+    "build": "rimraf dist && webpack --config webpack.prod.config.js --progress --profile --color",
+    "lint": "eslint src/**/**/*.js"
   },
   "author": "Dhaval L.",
   "license": "ISC",
@@ -13,13 +14,19 @@
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.0",
     "@babel/preset-react": "^7.9.4",
+    "autoprefixer": "^9.7.5",
+    "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
     "css-loader": "^3.4.2",
+    "eslint": "^6.8.0",
+    "eslint-loader": "^3.0.3",
+    "eslint-plugin-react": "^7.19.0",
     "file-loader": "^6.0.0",
     "html-webpack-plugin": "^4.0.2",
     "mini-css-extract-plugin": "^0.9.0",
     "node-sass": "^4.13.1",
     "postcss-loader": "^3.0.0",
+    "rimraf": "^3.0.2",
     "sass-loader": "^8.0.2",
     "url-loader": "^4.0.0",
     "webpack": "^4.41.2",
@@ -29,5 +36,8 @@
   "dependencies": {
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
-  }
+  },
+  "browserslist": [
+    "defaults"
+  ]
 }

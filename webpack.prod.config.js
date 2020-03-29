@@ -5,8 +5,8 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 
 const config = {
   entry: './src/index.js',
-  mode: 'development',
-  devtool: 'cheap-module-eval-source-map',
+  mode: 'production',
+  devtool: 'cheap-module-source-map',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
@@ -26,9 +26,6 @@ const config = {
         use: [
           {
             loader: MiniCssExtractPlugin.loader, // extract css or JS modules into a separate file
-            options: {
-              hmr: true,
-            },
           },
           {
             loader: 'css-loader',
