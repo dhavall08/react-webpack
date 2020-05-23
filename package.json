@@ -8,7 +8,7 @@
     "build": "rimraf dist && webpack --config webpack.prod.js --progress --profile --color",
     "lint": "eslint src/**/**/*.js",
     "format": "prettier --write \"src/**/*.+(js|jsx|json|yml|yaml|md|html)\"",
-    "eslint:fix": "eslint --fix --max-warnings=0"
+    "eslint:fix": "eslint src/**/**/*.js --fix --max-warnings=0"
   },
   "author": "Dhaval L.",
   "license": "ISC",
