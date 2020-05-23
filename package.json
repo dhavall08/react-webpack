@@ -1,12 +1,14 @@
 {
   "name": "webpack",
   "version": "1.0.0",
-  "description": "Webpack demo project",
+  "description": "Webpack Configuration",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --open",
-    "build": "rimraf dist && webpack --config webpack.prod.config.js --progress --profile --color",
-    "lint": "eslint src/**/**/*.js"
+    "start": "webpack-dev-server --open --config webpack.dev.js",
+    "build": "rimraf dist && webpack --config webpack.prod.js --progress --profile --color",
+    "lint": "eslint src/**/**/*.js",
+    "format": "prettier --write \"src/**/*.+(js|jsx|json|yml|yaml|md|html)\"",
+    "eslint:fix": "eslint --fix --max-warnings=0"
   },
   "author": "Dhaval L.",
   "license": "ISC",
@@ -19,23 +21,44 @@
     "babel-loader": "^8.1.0",
     "css-loader": "^3.4.2",
     "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.11.0",
     "eslint-loader": "^3.0.3",
+    "eslint-plugin-prettier": "^3.1.3",
     "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-react-hooks": "^4.0.2",
     "file-loader": "^6.0.0",
     "html-webpack-plugin": "^4.0.2",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.6",
     "mini-css-extract-plugin": "^0.9.0",
     "node-sass": "^4.13.1",
     "postcss-loader": "^3.0.0",
+    "prettier": "^2.0.5",
     "rimraf": "^3.0.2",
     "sass-loader": "^8.0.2",
     "url-loader": "^4.0.0",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",
-    "webpack-dev-server": "^3.9.0"
+    "webpack-dev-server": "^3.9.0",
+    "webpack-merge": "^4.2.2"
   },
   "dependencies": {
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.+(js|jsx)": [
+      "npm run eslint:fix",
+      "prettier --write \"**/*.+(js|jsx)\""
+    ],
+    "*.+(json|yml|yaml|md)": [
+      "prettier --write \"**/*.+(json|yml|yaml|md)\""
+    ]
   },
   "browserslist": [
     "defaults"
