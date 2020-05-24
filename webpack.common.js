@@ -44,7 +44,7 @@ const config = {
         options: {
           name: '[name].[ext]?[hash]',
           limit: 8192, // in bytes
-          outputPath: './images/',
+          outputPath: 'assets/images/',
         },
       },
       {
@@ -52,7 +52,7 @@ const config = {
         loader: 'file-loader',
         options: {
           name: '[name].[ext]?[hash]',
-          outputPath: './fonts/',
+          outputPath: 'assets/fonts/',
         },
       },
     ],
